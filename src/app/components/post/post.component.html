@@ -1,0 +1,39 @@
+<mat-card style="margin-bottom: 1rem">
+  <mat-card-content>
+    <div>
+      <form [formGroup]="postForm" (ngSubmit)="addPost()">
+        <input type="text" placeholder="Add..." formControlName="title" autofocus>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card style="margin-bottom: 1rem">
+  <mat-card-content>
+    <div>We have {{ store.postCount() }} posts</div>
+  </mat-card-content>
+</mat-card>
+
+
+@if(store.isLoading()) {
+  <mat-card style="margin-bottom: 1rem">
+    <mat-card-content>
+        <div><mat-spinner color="accent" mode="indeterminate"></mat-spinner></div>
+    </mat-card-content>
+  </mat-card>
+} @else {
+  <mat-card style="margin-bottom: 1rem">
+    <mat-card-content>
+      @for(post of store.posts(); track $index) {
+        <div>{{ post.title }} <span (click)="store.removePost(post.id)">X</span></div>
+      }
+    </mat-card-content>
+  </mat-card>
+}
+@if(store.error()) {
+  <mat-card style="margin-bottom: 1rem">
+    <mat-card-content>
+      <div>{{ store.error() }}</div>
+    </mat-card-content>
+  </mat-card>
+}
