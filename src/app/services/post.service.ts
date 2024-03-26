@@ -11,7 +11,7 @@ export class PostService {
   api: string = 'https://jsonplaceholder.typicode.com/posts';
 
   getAllPosts(): Observable<PostModel[]> {
-    return this.http.get<PostModel[]>(this.api).pipe(delay(300))
+    return this.http.get<PostModel[]>(this.api).pipe(delay(5000))
     // const posts = [
     //   {id: '1', title: 'First post'},
     //   {id: '2', title: 'Second post'},

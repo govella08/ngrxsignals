@@ -22,6 +22,7 @@ export const PostsStore = signalStore(
         title
       };
       const updatedPost = [...store.posts(), newPost];
+      // postService.getAllPosts()
       patchState(store, {posts: updatedPost})
     },
     removePost(id: string) {
@@ -51,7 +52,7 @@ export const PostsStore = signalStore(
   })),
   withHooks((store) => ({
     onInit() {
-      store.loadPosts();
+      store.loadPosts()
     }
-  }))
+  })),
 )
